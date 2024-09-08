@@ -17,7 +17,7 @@ export const ErrorMiddleware = (
   }
 
   //duplicate key error: auth error
-  if ((err.code = 11000)) {
+  if ((err.code === 11000)) {
     const message = `Duplicate ${Object.keys(err.keyValue)} entered`;
     err = new ErrorHandler(message, 400);
   }
