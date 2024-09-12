@@ -1,14 +1,19 @@
 import express from "express";
-import { registrationUser } from "../controllers/user.controller";
+import {
+  activateUser,
+  loginUser,
+  logoutUser,
+  registrationUser,
+} from "../controllers/user.controller";
+import { isAuthenticated } from "../middleware/auth";
 const userRouter = express.Router();
 
-userRouter.post('/registration', registrationUser);
+userRouter.post("/registration", registrationUser);
 
-userRouter.get('/registration', (req, res, next) => {
-    res.json({
-        success: true,
-        message: "chal toh rha h"
-    })
-})
+userRouter.post("/activate-user", activateUser);
+
+userRouter.post("/login", loginUser);
+
+userRouter.get("/logout", isAuthenticated, logoutUser);
 
 export default userRouter;
